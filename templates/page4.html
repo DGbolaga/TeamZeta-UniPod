@@ -19,10 +19,10 @@
 
       <h2>Questions</h2>
 
-      <form class="form-box" action="{{ url_for('thankyou') }}" method="get">
+      <form class="form-box" action="{{ url_for('chat') }}" method="get">
         <div class="input-row">
           <div class="input-group">
-            <label>How often do you use a calendar, planner, or time labeling method?</label>
+            <label>How often do you use a calendar or planner?</label>
             <select required>
               <option value="" selected disabled hidden>SELECT</option>
               <option value="daily">Daily</option>
@@ -55,7 +55,7 @@
           </div>
           <div class="input-group">
             <label>Use your current courses and show how confident you are in watching them (e.g., 10+ performance)</label>
-            <input type="text" placeholder="Enter course and confidence level" />
+            <input type="number" min="0" max="10" placeholder="Enter course and confidence level" required/>
           </div>
         </div>
 
@@ -88,7 +88,6 @@
           <span class="dot" data-step="2"></span>
           <span class="dot" data-step="3"></span>
           <span class="dot" data-step="4"></span>
-          <span class="dot" data-step="5"></span>
         </div>
 
         <!-- Navigation -->

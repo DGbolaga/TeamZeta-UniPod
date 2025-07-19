@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Session - Study Progress</title>
+  <!-- Include your existing stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+  <!-- Include the chat-specific stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='chat-styles.css') }}">
+</head>
+<body class="chat-page">
+  <div class="chat-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <button class="menu-icon">☰</button>
+        <div class="search-box">
+          <input type="text" placeholder="Search">
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+      
+      <div class="conversations">
+        <div class="conversation-item active">
+          <div class="avatar" style="background: linear-gradient(45deg, #60a5fa, #a78bfa);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">How're you feeling today?</div>
+          </div>
+          <div class="conversation-time">19:48</div>
+          <div class="status-indicator status-online"></div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #f97316, #eab308);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">Awesome! Let's stay intentional. I'll ...</div>
+          </div>
+          <div class="conversation-time">now</div>
+          <div class="status-indicator status-online"></div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #ec4899, #f43f5e);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">My exams are in two days time, I'm worried...</div>
+          </div>
+          <div class="conversation-time">6:02</div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #22c55e, #84cc16);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">Rise and shine, it's Monday!</div>
+          </div>
+          <div class="conversation-time">4:42</div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #8b5cf6, #a855f7);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">All done mate 😊</div>
+          </div>
+          <div class="conversation-time">Sun</div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #06b6d4, #0891b2);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">It's ready.</div>
+          </div>
+          <div class="conversation-time">Sun</div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #64748b, #475569);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">I'm feeling Calm and quiet</div>
+          </div>
+          <div class="conversation-time">Sat</div>
+        </div>
+        
+        <div class="conversation-item">
+          <div class="avatar" style="background: linear-gradient(45deg, #ef4444, #dc2626);"></div>
+          <div class="conversation-content">
+            <div class="conversation-preview">What helped or hurt your focus this week?</div>
+          </div>
+          <div class="conversation-time">Fri</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="main-chat">
+      <div class="chat-header">
+        <div class="today-label">Today</div>
+        <div class="study-progress">Study Progress</div>
+        <div class="user-avatars">
+          <div class="user-avatar" style="background: #666;"></div>
+          <div class="user-avatar" style="background: #888;"></div>
+        </div>
+      </div>
+      
+      <div class="chat-messages">
+        <div class="welcome-message">
+          <h1>Welcome to Your Study Session</h1>
+          <p>Ready to dive into your personalized learning experience? I'm here to help you stay focused, motivated, and on track with your academic goals.</p>
+          
+          <div class="quick-actions">
+            <div class="quick-action" onclick="startDiscussion('schedule')">
+              <h3>📅 Review Schedule</h3>
+              <p>Let's check your time management and upcoming deadlines</p>
+            </div>
+            <div class="quick-action" onclick="startDiscussion('goals')">
+              <h3>🎯 Set Goals</h3>
+              <p>Define and track your academic objectives</p>
+            </div>
+            <div class="quick-action" onclick="startDiscussion('focus')">
+              <h3>🧠 Focus Session</h3>
+              <p>Get strategies to improve concentration</p>
+            </div>
+            <div class="quick-action" onclick="startDiscussion('progress')">
+              <h3>📊 Track Progress</h3>
+              <p>Review your achievements and areas for improvement</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chat-input">
+        <div class="input-container">
+          <input type="text" placeholder="Message" id="messageInput">
+          <button class="send-button" onclick="sendMessage()">
+            <span>➤</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function startDiscussion(topic) {
+      const input = document.getElementById('messageInput');
+      const messages = {
+        'schedule': "I'd like to review my schedule and time management",
+        'goals': "Help me set and track my academic goals",
+        'focus': "I need strategies to improve my focus and concentration",
+        'progress': "Let's review my progress and achievements"
+      };
+      input.value = messages[topic];
+      input.focus();
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      
+      if (message) {
+        // Here you would typically send the message to your backend
+        console.log('Sending message:', message);
+        
+        // Clear the input
+        input.value = '';
+        
+        // Add message to chat (you would implement this based on your backend)
+        addMessageToChat(message, 'user');
+      }
+    }
+
+    function addMessageToChat(message, sender) {
+      const chatMessages = document.querySelector('.chat-messages');
+      const welcomeMessage = document.querySelector('.welcome-message');
+      
+      // Hide welcome message on first message
+      if (welcomeMessage) {
+        welcomeMessage.style.display = 'none';
+      }
+      
+      // Add the message (implement based on your needs)
+      // This is just a placeholder
+    }
+
+    // Enter key to send message
+    document.getElementById('messageInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Conversation item click handler
+    document.querySelectorAll('.conversation-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
