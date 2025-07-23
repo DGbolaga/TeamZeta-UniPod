@@ -75,6 +75,10 @@ def submit_step5():
     
     return jsonify({'success': True, 'next_step': '/chat'})
 
+@app.route('/thankyou')
+def thankyou():
+    return render_template('thankyou.html')
+
 @app.route('/send_message', methods=['POST'])
 def send_message():
     data = request.get_json()

@@ -1,0 +1,466 @@
+--- page1.html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1: Goals</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body data-page="1">
+  <div class="container">
+    <section class="content">
+      <p class="step">Step 1: Goals</p>
+      <h1>Clarity of goals is the first step toward success. You can’t improve what you don’t define.</h1>
+      <p class="sub">
+        <em>Knowing where you’re going helps you make better decisions today.</em> But it’s more than just setting targets; it’s about understanding yourself, your current path, and what you truly want to achieve.
+      </p>
+      <p class="desc">
+        This section helps you reflect on where you are now and where you want to be. There are no wrong answers, only insights that can guide you toward growth. Your dreams matter, and this is a chance to define them clearly so your journey can be more focused, intentional, and fulfilling.
+      </p>
+
+      <h2>Questions</h2>
+
+      <form class="form-box" action="page2.html" method="get">
+        <div class="input-row">
+          <div class="input-group">
+            <label>What’s your preferred name?</label>
+            <input type="text" placeholder="Enter your nickname" required />
+          </div>
+          <div class="input-group">
+            <label>What’s your current level of study?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="100L">100 Level</option>
+              <option value="200L">200 Level</option>
+              <option value="300L">300 Level</option>
+              <option value="400L">400 Level</option>
+              <option value="500L">500 Level</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>What’s the name of your institution?</label>
+            <input type="text" placeholder="Enter Institution name" required />
+          </div>
+          <div class="input-group">
+            <label>What’s your major or field of study?</label>
+            <input type="text" placeholder="Enter your major (e.g. Engineering)" required />
+          </div>
+        </div>
+
+        <div class="input-full">
+          <label>What’s your top academic goal for this semester?</label>
+          <textarea placeholder="e.g., Earn a 5.0 GPA, pass all courses..." required></textarea>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="dots">
+          <span class="dot" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4"></span>
+          <span class="dot" data-step="5"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-button">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Highlight current dot -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage = document.body.getAttribute("data-page");
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach(dot => {
+        if (dot.getAttribute("data-step") === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
+
+--- page2.html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 2: Academic Capabilities</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body data-page="2">
+  <div class="container">
+    <section class="content">
+      <p class="step">Step 2: Academic Capabilities</p>
+      <h1>Success in academics isn't just about how smart you are. It's about how consistent your habits are.</h1>
+      <p class="sub">
+        <em>Strong academic performance comes from routines, rest, and intentional effort.</em>
+      </p>
+      <p class="desc">
+        This section helps you assess your current study rhythm, energy levels, and the patterns that either support or block your progress.
+        The goal here isn't perfection — it's clarity. Let's take a look at how you currently learn and what might help you improve.
+      </p>
+
+      <h2>Questions</h2>
+
+      <form class="form-box" action="page3.html" method="get">
+        <div class="input-row">
+          <div class="input-group">
+            <label>How many hours do you study daily (on average)?</label>
+            <input type="number" placeholder="Enter No. of study hours" required />
+          </div>
+          <div class="input-group">
+            <label>How many hours of sleep do you usually get on school nights?</label>
+            <input type="number" placeholder="Enter No. of sleep hours" required />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Do you find it hard to stay focused when studying?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Do you have a consistent study routine or schedule?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>What time of the day do you feel most productive?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="night">Night</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Which best describes your study environment?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="lib">Library</option>
+              <option value="class">Classroom</option>
+              <option value="out">Outside</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>How often do you review class materials after lectures?</label>
+          <select required>
+            <option value="" disabled selected hidden>SELECT</option>
+            <option value="often">Often</option>
+            <option value="sometimes">Sometimes</option>
+            <option value="never">Never</option>
+          </select>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="dots">
+          <span class="dot" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4"></span>
+          <span class="dot" data-step="5"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-button">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Dot Activation Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage = document.body.getAttribute("data-page");
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach(dot => {
+        if (dot.getAttribute("data-step") === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
+
+--- page3.html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body data-page="3">
+  <div class="container">
+    <section class="content">
+      <p class="step">Step 3: Health & Mental Wellness</p>
+      <h1>Your health is the foundation of your success. A clear mind and a strong body work hand in hand to help you grow.</h1>
+      <p class="sub"><em>You can't pour from an empty cup. Taking care of your physical and mental health gives you the energy, focus and resilience to thrive in school and life.</em></p>
+      <p class="desc">
+        This section helps you reflect on how you are caring for yourself, both inside and out. 
+        This isn't about being perfect – it's about being honest and kind to yourself. Your health matters, and small changes can make a big difference.
+      </p>
+
+      <h2>Questions</h2>
+
+      <form class="form-box" action="page4.html" method="get">
+        <div class="input-row">
+          <div class="input-group">
+            <label>On average, how many hours of sleep do you get on school nights?</label>
+            <input type="number" placeholder="Enter No. of sleep hours" required />
+          </div>
+          <div class="input-group">
+            <label>How often do you take breaks or rests while studying or working?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="often">Often</option>
+              <option value="sometimes">Sometimes</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Do you engage in any self-care practices?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Have you eaten properly today?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>What are some unhealthy habits you would like to reduce?</label>
+            <input type="text" placeholder="(e.g., procrastination, screen time)" />
+          </div>
+          <div class="input-group">
+            <label>On a scale of 1–10, how would you rate your overall mental being?</label>
+            <input type="number" placeholder="Enter a number" min="1" max="10" />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>When you feel stressed, how do you usually cope?</label>
+            <input type="text" placeholder="(e.g., sleep, gaming)" />
+          </div>
+          <div class="input-group">
+            <label>How often do you feel anxious, stressed or overwhelmed during the semester?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="very">Very often</option>
+              <option value="sometimes">Sometimes</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Do you have someone you can talk to when you're feeling low or stressed?</label>
+          <select required>
+            <option value="" disabled selected hidden>SELECT</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="dots">
+          <span class="dot" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4"></span>
+          <span class="dot" data-step="5"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-button">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Highlight Active Dot -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage = document.body.getAttribute("data-page");
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach(dot => {
+        if (dot.getAttribute("data-step") === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
+
+--- page4.html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 4: Time Scheduling</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body data-page="4">
+  <div class="container">
+    <section class="content">
+      <p class="step">Step 4: Time Scheduling</p>
+      <h1>Time is your most valuable academic currency. Budget it like your success depends on it — because it does.</h1>
+      <p class="sub"><em>Managing your time well can relieve stress, sharpen your focus, and create space for both rest and growth.</em></p>
+      <p class="desc">
+        This section helps you reflect on how you plan, prioritize, and follow through with your responsibilities — 
+        so you can build habits that support your goals, not overwhelm you.
+      </p>
+
+      <h2>Questions</h2>
+
+      <form class="form-box" action="page5.html" method="get">
+        <div class="input-row">
+          <div class="input-group">
+            <label>How often do you use a calendar, planner, or time labeling method?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="rarely">Rarely</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Do you plan out your week in advance?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Are you aware of your exam dates and major deadlines?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="yes-all">Yes, all of them</option>
+              <option value="yes-most">Yes, most of them</option>
+              <option value="some">Some of them</option>
+              <option value="no">No, not really</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Use your current courses and show how confident you are in watching them (e.g., 10+ performance)</label>
+            <input type="text" placeholder="Enter course and confidence level" />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>What's your goal grade for each course?</label>
+            <input type="text" placeholder="Enter course and goal grade" />
+          </div>
+          <div class="input-group">
+            <label>How often do you start assignments early?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="always">Always</option>
+              <option value="often">Often</option>
+              <option value="sometimes">Sometimes</option>
+              <option value="rarely">Rarely</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-full">
+          <label>What's your biggest distraction when trying to stay on schedule?</label>
+          <textarea placeholder="e.g., social media, procrastination, noise, group chat" required></textarea>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="dots">
+          <span class="dot" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4"></span>
+          <span class="dot" data-step="5"></span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="form-button">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Active Dot Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage = document.body.getAttribute("data-page");
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach(dot => {
+        if (dot.getAttribute("data-step") === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html> 
