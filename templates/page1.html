@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1: Goals</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body data-page="1">
+  <div class="container">
+    <section class="content">
+      <p class="step">Step 1: Goals</p>
+      <h1>Clarity of goals is the first step toward success. You can’t improve what you don’t define.</h1>
+      <p class="sub">
+        <em>Knowing where you’re going helps you make better decisions today.</em> But it’s more than just setting targets; it’s about understanding yourself, your current path, and what you truly want to achieve.
+      </p>
+      <p class="desc">
+        This section helps you reflect on where you are now and where you want to be. There are no wrong answers, only insights that can guide you toward growth. Your dreams matter, and this is a chance to define them clearly so your journey can be more focused, intentional, and fulfilling.
+      </p>
+
+      <h2>Questions</h2>
+
+      <form class="form-box" action="page2.html" method="get">
+        <div class="input-row">
+          <div class="input-group">
+            <label>What’s your preferred name?</label>
+            <input type="text" placeholder="Enter your nickname" required />
+          </div>
+          <div class="input-group">
+            <label>What’s your current level of study?</label>
+            <select required>
+              <option value="" disabled selected hidden>SELECT</option>
+              <option value="100L">100 Level</option>
+              <option value="200L">200 Level</option>
+              <option value="300L">300 Level</option>
+              <option value="400L">400 Level</option>
+              <option value="500L">500 Level</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>What’s the name of your institution?</label>
+            <input type="text" placeholder="Enter Institution name" required />
+          </div>
+          <div class="input-group">
+            <label>What’s your major or field of study?</label>
+            <input type="text" placeholder="Enter your major (e.g. Engineering)" required />
+          </div>
+        </div>
+
+        <div class="input-full">
+          <label>What’s your top academic goal for this semester?</label>
+          <textarea placeholder="e.g., Earn a 5.0 GPA, pass all courses..." required></textarea>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="dots">
+          <span class="dot" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4"></span>
+          <span class="dot" data-step="5"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-button">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Highlight current dot -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage = document.body.getAttribute("data-page");
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach(dot => {
+        if (dot.getAttribute("data-step") === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

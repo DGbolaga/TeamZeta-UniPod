@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import os
 import json
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = 'your-secret-key-here'
 
 # Create directories for storing responses
@@ -12,13 +12,13 @@ os.makedirs('chat_logs', exist_ok=True)
 
 @app.route('/')
 def index():
-    return render_template('step1.html')
+    return render_template('page1.html')
 
 @app.route('/step/<int:step_num>')
 def step(step_num):
-    if step_num < 1 or step_num > 5:
-        return redirect('/')
-    return render_template(f'step{step_num}.html')
+    if step_num < 1 or step_num > 4:
+        return redirect(url_for('index'))
+    return render_template(f'page{step_num}.html')
 
 @app.route('/chat')
 def chat():

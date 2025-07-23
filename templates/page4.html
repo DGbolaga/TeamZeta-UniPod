@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 4: Time Scheduling</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body data-page="4">
+  <div class="container">
+    <section class="content">
+      <p class="step">Step 4: Time Scheduling</p>
+      <h1>Time is your most valuable academic currency. Budget it like your success depends on it — because it does.</h1>
+      <p class="sub"><em>Managing your time well can relieve stress, sharpen your focus, and create space for both rest and growth.</em></p>
+      <p class="desc">
+        This section helps you reflect on how you plan, prioritize, and follow through with your responsibilities — 
+        so you can build habits that support your goals, not overwhelm you.
+      </p>
+
+      <h2>Questions</h2>
+
+      <form class="form-box" action="page5.html" method="get">
+        <div class="input-row">
+          <div class="input-group">
+            <label>How often do you use a calendar, planner, or time labeling method?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="rarely">Rarely</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Do you plan out your week in advance?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Are you aware of your exam dates and major deadlines?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="yes-all">Yes, all of them</option>
+              <option value="yes-most">Yes, most of them</option>
+              <option value="some">Some of them</option>
+              <option value="no">No, not really</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Use your current courses and show how confident you are in watching them (e.g., 10+ performance)</label>
+            <input type="text" placeholder="Enter course and confidence level" />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>What's your goal grade for each course?</label>
+            <input type="text" placeholder="Enter course and goal grade" />
+          </div>
+          <div class="input-group">
+            <label>How often do you start assignments early?</label>
+            <select required>
+              <option value="" selected disabled hidden>SELECT</option>
+              <option value="always">Always</option>
+              <option value="often">Often</option>
+              <option value="sometimes">Sometimes</option>
+              <option value="rarely">Rarely</option>
+              <option value="never">Never</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-full">
+          <label>What's your biggest distraction when trying to stay on schedule?</label>
+          <textarea placeholder="e.g., social media, procrastination, noise, group chat" required></textarea>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="dots">
+          <span class="dot" data-step="1"></span>
+          <span class="dot" data-step="2"></span>
+          <span class="dot" data-step="3"></span>
+          <span class="dot" data-step="4"></span>
+          <span class="dot" data-step="5"></span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="form-button">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Active Dot Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage = document.body.getAttribute("data-page");
+      const dots = document.querySelectorAll(".dot");
+
+      dots.forEach(dot => {
+        if (dot.getAttribute("data-step") === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

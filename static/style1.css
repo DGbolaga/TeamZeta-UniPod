@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #1d1f2f;
+  color: #ffffff;
+  line-height: 1.6;
+  padding: 40px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.step {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.sub {
+  font-style: italic;
+  color: #cccccc;
+  margin-bottom: 15px;
+}
+
+.desc {
+  margin-bottom: 30px;
+  color: #dddddd;
+}
+
+h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form-box {
+  border: 1px solid #666;
+  padding: 50px;
+  border-radius: 5px;
+  background-color: #232537;
+
+}
+
+.input-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-group input,
+.input-group select,
+.input-full textarea {
+  padding: 10px;
+  background: #1b1c28;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.input-full {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-full label {
+  margin-bottom: 5px;
+}
+
+.input-full textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.dots {
+  justify-content: center;
+  margin-top: 25px;
+  color: #ddd;
+  font-size: 18px;
+  letter-spacing: 5px;
+  justify-self: center;
+}
+
+.form-button{
+    justify-self: left;
+}
+button {
+  background: #ccc;
+  border: none;
+  padding: 10px 20px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #fff;
+}
+
+.dots {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dot {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #ccc;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #1d1f2f; 
+}
+
+.input-row {
+  margin-top: 10px;
+}
+
