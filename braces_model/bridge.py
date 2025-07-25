@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import dotenv
-import utilities
+from braces_model import utilities
 
  
 MODEL_ID = "deepseek/deepseek-r1-0528:free" #mistralai/mistral-small-3.1-24b-instruct:free #mistralai/mistral-7b-instruct:free

@@ -103,25 +103,26 @@
       
       <div class="chat-messages">
         <div class="welcome-message">
-          <h1>Welcome to Your Study Session</h1>
-          <p>Ready to dive into your personalized learning experience? I'm here to help you stay focused, motivated, and on track with your academic goals.</p>
-          
-          <div class="quick-actions">
-            <div class="quick-action" onclick="startDiscussion('schedule')">
-              <h3>📅 Review Schedule</h3>
-              <p>Let's check your time management and upcoming deadlines</p>
+          <div class="ai-welcome-bubble">
+            <div class="ai-avatar">
+              <div class="ai-icon">🤖</div>
             </div>
-            <div class="quick-action" onclick="startDiscussion('goals')">
-              <h3>🎯 Set Goals</h3>
-              <p>Define and track your academic objectives</p>
-            </div>
-            <div class="quick-action" onclick="startDiscussion('focus')">
-              <h3>🧠 Focus Session</h3>
-              <p>Get strategies to improve concentration</p>
-            </div>
-            <div class="quick-action" onclick="startDiscussion('progress')">
-              <h3>📊 Track Progress</h3>
-              <p>Review your achievements and areas for improvement</p>
+            <div class="welcome-content">
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="welcome-text">
+                <h2>Hey there! 👋</h2>
+                <p>I'm your personal academic assistant. I've analyzed your responses and I'm ready to help you crush your goals!</p>
+                <div class="welcome-features">
+                  <span class="feature-tag">📚 Smart Study Plans</span>
+                  <span class="feature-tag">⏰ Time Management</span>
+                  <span class="feature-tag">🎯 Goal Tracking</span>
+                </div>
+                <p class="welcome-prompt">What would you like to work on today?</p>
+              </div>
             </div>
           </div>
         </div>
@@ -154,30 +155,50 @@
     function sendMessage() {
       const input = document.getElementById('messageInput');
       const message = input.value.trim();
-      
       if (message) {
-        // Here you would typically send the message to your backend
-        console.log('Sending message:', message);
-        
-        // Clear the input
-        input.value = '';
-        
-        // Add message to chat (you would implement this based on your backend)
         addMessageToChat(message, 'user');
+        fetch('/send_message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        })
+        .then(response => response.json())
+        .then(data => {
+          addMessageToChat(data.response, 'ai');
+        });
+        input.value = '';
       }
     }
 
     function addMessageToChat(message, sender) {
       const chatMessages = document.querySelector('.chat-messages');
       const welcomeMessage = document.querySelector('.welcome-message');
-      
-      // Hide welcome message on first message
       if (welcomeMessage) {
         welcomeMessage.style.display = 'none';
       }
-      
-      // Add the message (implement based on your needs)
-      // This is just a placeholder
+      const messageDiv = document.createElement('div');
+      messageDiv.className = sender === 'ai' ? 'ai-message' : 'user-message';
+      messageDiv.textContent = message;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Send initial message on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      sendInitialMessage();
+    });
+
+    function sendInitialMessage() {
+      const initialMessage = "start";
+      fetch('/send_message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: initialMessage })
+      })
+      .then(response => response.json())
+      .then(data => {
+        addMessageToChat(data.response, 'ai');
+      });
     }
 
     // Enter key to send message
