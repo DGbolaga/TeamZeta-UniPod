@@ -1,3 +1,5 @@
+from braces_model import bridge
+from braces_model import run_agent, initialize_artifact, update_artifact, ask_braces
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import os
 import json
@@ -19,7 +21,7 @@ def get_session_id():
 
 @app.route('/')
 def index():
-    return render_template('page1.html')
+    return render_template('multi_step_form.html')
 
 @app.route('/step/<int:step_num>')
 def step(step_num):
@@ -38,6 +40,30 @@ def submit_step(step_num):
 def chat():
     return render_template('chat.html')
 
+<<<<<<< HEAD
+=======
+@app.route('/submit_form', methods=['POST'])
+def submit_form():
+    # For now, just print form data and return a success message
+    form_data = request.form.to_dict()
+
+    initialize_artifact("memory", form_data)
+    initialize_artifact("pref", form_data)
+    initialize_artifact("schedule", form_data)
+    initialize_artifact("health", form_data)
+    initialize_artifact("resv", form_data)
+
+    print(f"User context initialized: {form_data}")
+    print("Initialized artifacts for BRACES agents!")
+    print(form_data)
+    
+    # TODO: Save to database or file, process, etc.
+
+    return "Form submitted successfully!"
+
+
+
+>>>>>>> 2d90dda8add308bb16d5b5340aaa99b063794ee1
 @app.route('/send_message', methods=['POST'])
 def send_message():
     data = request.get_json()
@@ -58,5 +84,16 @@ def log_chat_message(user_message, ai_response):
         f.write(f"[{timestamp}] USER: {user_message}\n")
         f.write(f"[{timestamp}] AI: {ai_response}\n\n")
 
+<<<<<<< HEAD
+=======
+def generate_session_id():
+    """Generate a unique session ID"""
+    return f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+
+
+
+
+
+>>>>>>> 2d90dda8add308bb16d5b5340aaa99b063794ee1
 if __name__ == '__main__':
     app.run(debug=True)

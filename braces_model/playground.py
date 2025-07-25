@@ -17,6 +17,7 @@ user_context = {
 
 
 
+
 initialize_artifact("memory", user_context)
 initialize_artifact("pref", user_context)
 initialize_artifact("schedule", user_context)

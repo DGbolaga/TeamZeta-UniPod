@@ -1,119 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Step 2: Academic Capabilities</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
-</head>
-<body data-page="2">
-  <div class="container">
-    <section class="content">
-      <p class="step">Step 2: Academic Capabilities</p>
-      <h1>Success in academics isn't just about how smart you are. It's about how consistent your habits are.</h1>
-      <p class="sub">
-        <em>Strong academic performance comes from routines, rest, and intentional effort.</em>
-      </p>
-      <p class="desc">
-        This section helps you assess your current study rhythm, energy levels, and the patterns that either support or block your progress.
-        The goal here isn't perfection — it's clarity. Let's take a look at how you currently learn and what might help you improve.
-      </p>
 
-      <h2>Questions</h2>
+<div class="form-step active" data-step="2">
+  <!-- Step 2 Content -->
+  <p class="step">{% block steps %} Step 2: Academic Capabilities {% endblock %}</p>
+  <h1>
+    {% block headline %} 
+    Success in academics isn't just about how smart you are. It's about how consistent your habits are. 
+    {% endblock %}
+  </h1>
+  <p class="sub">
+    {% block subHeadline %}
+    <em>Strong academic performance comes from routines, rest, and intentional effort.</em> 
+    {% endblock %}</p>
+  <p class="desc">
+    {% block headlineDescription %}
+    This section helps you assess your current study rhythm, energy levels, and the patterns that either support or block your progress.
+    The goal here isn't perfection — it's clarity. Let's take a look at how you currently learn and what might help you improve.
+    {% endblock %}
+  </p>
 
-      <form class="form-box" action="{{ url_for('step', step_num=3) }}" method="get">
-        <div class="input-row">
-          <div class="input-group">
-            <label>How many hours do you study daily (on average)?</label>
-            <input type="number" min="0" placeholder="Enter No. of study hours" required />
-          </div>
-          <div class="input-group">
-            <label>How many hours do you sleep on school nights?</label>
-            <input type="number" min="0" placeholder="Enter No. of sleep hours" required />
-          </div>
-        </div>
+  <h2>Questions</h2>
 
-        <div class="input-row">
-          <div class="input-group">
-            <label>Do you find it hard to stay focused when studying?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label>Do you have a consistent study routine or schedule?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-          </div>
-        </div>
+  <div class="form-details">
+    <div class="input-row">
+      <div class="input-group">
+        <label>How many hours do you study daily (on average)?</label>
+        <input type="number" min="0" name="No_of_study_hours" placeholder="Enter No. of study hours" required />
+      </div>
+      <div class="input-group">
+        <label>How many hours do you sleep on school nights?</label>
+        <input type="number" min="0" name="No_of_sleep_hours" placeholder="Enter No. of sleep hours" required />
+      </div>
+    </div>
 
-        <div class="input-row">
-          <div class="input-group">
-            <label>What time of the day do you feel most productive?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="morning">Morning</option>
-              <option value="afternoon">Afternoon</option>
-              <option value="night">Night</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label>Which best describes your study environment?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="lib">Library</option>
-              <option value="class">Classroom</option>
-              <option value="out">Outside</option>
-            </select>
-          </div>
-        </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Do you find it hard to stay focused when studying?</label>
+        <select name="distractions_prone" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Do you have a consistent study routine or schedule?</label>
+        <select name="consistent_daily_study_routine" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
 
-        <div class="input-group">
-          <label>How often do you review class materials after lectures?</label>
-          <select required>
-            <option value="" disabled selected hidden>SELECT</option>
-            <option value="often">Often</option>
-            <option value="sometimes">Sometimes</option>
-            <option value="never">Never</option>
-          </select>
-        </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>What time of the day do you feel most productive?</label>
+        <select name="Productive_hours_of_the day" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="morning">Morning</option>
+          <option value="afternoon">Afternoon</option>
+          <option value="night">Night</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Which best describes your study environment?</label>
+        <select name="preferred_study_environment" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="lib">Library</option>
+          <option value="class">Classroom</option>
+          <option value="out">Outside</option>
+        </select>
+      </div>
+    </div>
 
-        <!-- Progress Dots -->
-        <div class="dots">
-          <span class="dot" data-step="1"></span>
-          <span class="dot" data-step="2"></span>
-          <span class="dot" data-step="3"></span>
-          <span class="dot" data-step="4"></span>
-        </div>
+    <div class="input-group">
+      <label>How often do you review class materials after lectures?</label>
+      <select name="class_materials_review" required>
+        <option value="" disabled selected hidden>SELECT</option>
+        <option value="often">Often</option>
+        <option value="sometimes">Sometimes</option>
+        <option value="never">Never</option>
+      </select>
+    </div>
 
-        <!-- Submit Button -->
-        <div class="form-button">
-          <button type="submit">Next</button>
-        </div>
-      </form>
-    </section>
+    <!-- Progress Dots -->
+    <div class="dots">
+      <span class="dot" data-step="1"></span>
+      <span class="dot" data-step="2"></span>
+      <span class="dot" data-step="3"></span>
+      <span class="dot" data-step="4"></span>
+    </div>    
   </div>
 
-  <!-- Dot Activation Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const currentPage = document.body.getAttribute("data-page");
-      const dots = document.querySelectorAll(".dot");
+</div> <!-- Close form-step -->
 
-      dots.forEach(dot => {
-        if (dot.getAttribute("data-step") === currentPage) {
-          dot.classList.add("active");
-        } else {
-          dot.classList.remove("active");
-        }
-      });
-    });
-  </script>
-  <script src="{{ url_for('static', filename='main.js') }}"></script>
-</body>
-</html>
+
+
+
+
+

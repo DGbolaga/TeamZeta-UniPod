@@ -1,0 +1,22 @@
+{% include "header.html" %}
+
+<div class="container">
+  <section class="content">
+    <form id="multiStepForm" class="form-box" action="{{ url_for('submit_form') }}" method="post">
+      
+      {% include "page1.html" %}
+      {% include "page2.html" %}
+      {% include "page3.html" %}
+      {% include "page4.html" %}
+      
+      <div class="form-button">
+        <button type="button" id="prevBtn" style="display:none;">Previous</button>
+        <button type="button" id="nextBtn" style="display:inline-block;">Next</button>
+        <button type="submit" id="finishBtn" style="display:none;">Finish</button>
+      </div>
+
+    </form>
+  </section>
+</div>
+
+<script src="/static/main.js"></script>
