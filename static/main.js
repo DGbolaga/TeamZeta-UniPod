@@ -1,31 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const page = document.body.getAttribute('data-page');
-    console.log('Loaded page:', page);
+document.addEventListener("DOMContentLoaded", function () {
+  const steps = document.querySelectorAll(".form-step");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const finishBtn = document.getElementById("finishBtn");
+  let currentStep = 0;
 
-    // Fetch and display stuff.txt content
-    fetch('/static/stuff.txt')
-        .then(response => response.text())
-        .then(data => {
-            console.log('Contents of stuff.txt:', data);
-        })
-        .catch(err => console.error('Could not load stuff.txt:', err));
+  function showStep(stepIndex) {
+    steps.forEach((step, index) => {
+      step.classList.toggle("active", index === stepIndex);
+    });
 
-    // // Add a Next button if not present
-    // if (!document.querySelector('.js-next-btn')) {
-    //     const nextBtn = document.createElement('button');
-    //     nextBtn.textContent = 'Next';
-    //     nextBtn.className = 'js-next-btn';
-    //     nextBtn.style.margin = '20px';
-    //     document.body.appendChild(nextBtn);
+    prevBtn.style.display = stepIndex > 0 ? "inline-block" : "none";
+    nextBtn.style.display = stepIndex < steps.length - 1 ? "inline-block" : "none";
+    finishBtn.style.display = stepIndex === steps.length - 1 ? "inline-block" : "none";
+  }
 
-    //     nextBtn.addEventListener('click', function() {
-    //         // Go to the next page if possible
-    //         let nextPage = parseInt(page, 10) + 1;
-    //         if (nextPage <= 4) {
-    //             window.location.href = `page${nextPage}.html`;
-    //         } else {
-    //             alert('No more steps!');
-    //         }
-    //     });
-    // }
-}); 
+  nextBtn.addEventListener("click", () => {
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+
+  showStep(currentStep);
+});

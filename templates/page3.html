@@ -1,127 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Step 3</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
-</head>
-<body data-page="3">
-  <div class="container">
-    <section class="content">
-      <p class="step">Step 3: Health & Mental Wellness</p>
-      <h1>Your health is the foundation of your success. A clear mind and a strong body work hand in hand to help you grow.</h1>
-      <p class="sub"><em>You can't pour from an empty cup. Taking care of your physical and mental health gives you the energy, focus and resilience to thrive in school and life.</em></p>
-      <p class="desc">
-        This section helps you reflect on how you are caring for yourself, both inside and out. 
-        This isn't about being perfect – it's about being honest and kind to yourself. Your health matters, and small changes can make a big difference.
-      </p>
 
-      <h2>Questions</h2>
+<div class="form-step active" data-step="3">
+  <!-- Step 3 Content -->
+  <p class="step">{% block steps %} Step 3: Health & Mental Wellness {% endblock %}</p>
+  <h1>
+    {% block headline %} 
+    Your health is the foundation of your success. A clear mind and a strong body work hand in hand to help you grow.
+    {% endblock %}
+  </h1>
+  <p class="sub">
+    {% block subHeadline %}
+    <em>You can't pour from an empty cup. Taking care of your physical and mental health gives you the energy, focus and resilience to thrive in school and life.</em>
+    {% endblock %}</p>
+  <p class="desc">
+    {% block headlineDescription %}
+    This section helps you reflect on how you are caring for yourself, both inside and out. 
+    This isn't about being perfect – it's about being honest and kind to yourself. Your health matters, and small changes can make a big difference.
+    {% endblock %}
+  </p>
 
-      <form class="form-box" action="{{ url_for('step', step_num=4) }}" method="get">
-        <div class="input-row">
-          <div class="input-group">
-            <label>On average, how many hours of sleep do you get on school nights?</label>
-            <input type="number" min="0" placeholder="Enter No. of sleep hours" required />
-          </div>
-          <div class="input-group">
-            <label>How often do you take breaks or rests while studying or working?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="often">Often</option>
-              <option value="sometimes">Sometimes</option>
-              <option value="never">Never</option>
-            </select>
-          </div>
-        </div>
+  <h2>Questions</h2>
 
-        <div class="input-row">
-          <div class="input-group">
-            <label>Do you engage in any self-care practices?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label>Have you eaten properly today?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-        </div>
 
-        <div class="input-row">
-          <div class="input-group">
-            <label>What are some unhealthy habits you would like to reduce?</label>
-            <input type="text" placeholder="(e.g., procrastination, screen time)" />
-          </div>
-          <div class="input-group">
-            <label>On a scale of 1–10, how would you rate your overall mental being?</label>
-            <input type="number" min="0" placeholder="Enter a number" min="1" max="10" />
-          </div>
-        </div>
+  <div class="form-details">
+    <div class="input-row">
+      <div class="input-group">
+        <label>On average, how many hours of sleep do you get on school nights?</label>
+        <input type="number" min="0" name="average_sleep_hours" placeholder="Enter No. of sleep hours" required />
+      </div>
+      <div class="input-group">
+        <label>How often do you take breaks or rests while studying or working?</label>
+        <select name="study_breaks" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="often">Often</option>
+          <option value="sometimes">Sometimes</option>
+          <option value="never">Never</option>
+        </select>
+      </div>
+    </div>
 
-        <div class="input-row">
-          <div class="input-group">
-            <label>When you feel stressed, how do you usually cope?</label>
-            <input type="text" placeholder="(e.g., sleep, gaming)" />
-          </div>
-          <div class="input-group">
-            <label>How often do you feel anxious, stressed or overwhelmed during the semester?</label>
-            <select required>
-              <option value="" disabled selected hidden>SELECT</option>
-              <option value="very">Very often</option>
-              <option value="sometimes">Sometimes</option>
-              <option value="never">Never</option>
-            </select>
-          </div>
-        </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Do you engage in any self-care practices?</label>
+        <select name="self-care-practice" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Have you eaten properly today?</label>
+        <select name="proper_food" required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+    </div>
 
-        <div class="input-group">
-          <label>Do you have someone you can talk to when you're feeling low or stressed?</label>
-          <select required>
-            <option value="" disabled selected hidden>SELECT</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>What are some unhealthy habits you would like to reduce?</label>
+        <input type="text" placeholder="(e.g., procrastination, screen time)" />
+      </div>
+      <div class="input-group">
+        <label>On a scale of 1–10, how would you rate your overall mental being?</label>
+        <input type="number" min="0" placeholder="Enter a number" min="1" max="10" />
+      </div>
+    </div>
 
-        <!-- Progress Dots -->
-        <div class="dots">
-          <span class="dot" data-step="1"></span>
-          <span class="dot" data-step="2"></span>
-          <span class="dot" data-step="3"></span>
-          <span class="dot" data-step="4"></span>
-        </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>When you feel stressed, how do you usually cope?</label>
+        <input type="text" placeholder="(e.g., sleep, gaming)" />
+      </div>
+      <div class="input-group">
+        <label>How often do you feel anxious, stressed or overwhelmed during the semester?</label>
+        <select required>
+          <option value="" disabled selected hidden>SELECT</option>
+          <option value="very">Very often</option>
+          <option value="sometimes">Sometimes</option>
+          <option value="never">Never</option>
+        </select>
+      </div>
+    </div>
 
-        <!-- Submit Button -->
-        <div class="form-button">
-          <button type="submit">Next</button>
-        </div>
-      </form>
-    </section>
+    <div class="input-group">
+      <label>Do you have someone you can talk to when you're feeling low or stressed?</label>
+      <select required>
+        <option value="" disabled selected hidden>SELECT</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <!-- Progress Dots -->
+    <div class="dots">
+      <span class="dot" data-step="1"></span>
+      <span class="dot" data-step="2"></span>
+      <span class="dot" data-step="3"></span>
+      <span class="dot" data-step="4"></span>
+    </div>    
   </div>
 
-  <!-- Highlight Active Dot -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const currentPage = document.body.getAttribute("data-page");
-      const dots = document.querySelectorAll(".dot");
-
-      dots.forEach(dot => {
-        if (dot.getAttribute("data-step") === currentPage) {
-          dot.classList.add("active");
-        } else {
-          dot.classList.remove("active");
-        }
-      });
-    });
-  </script>
-  <script src="{{ url_for('static', filename='main.js') }}"></script>
-</body>
-</html>
+</div> <!-- Close form-step -->

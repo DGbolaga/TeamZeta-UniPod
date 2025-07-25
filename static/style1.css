@@ -423,3 +423,13 @@ body.chat-page {
   font-size: 18px;
   cursor: pointer;
 }
+
+
+/*Page navigation*/
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}

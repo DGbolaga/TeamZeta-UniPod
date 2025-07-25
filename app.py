@@ -1,3 +1,5 @@
+from braces_model import bridge
+from braces_model import run_agent, initialize_artifact, update_artifact, ask_braces
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import os
 import json
@@ -12,7 +14,7 @@ os.makedirs('chat_logs', exist_ok=True)
 
 @app.route('/')
 def index():
-    return render_template('page1.html')
+    return render_template('multi_step_form.html')
 
 @app.route('/step/<int:step_num>')
 def step(step_num):
@@ -24,56 +26,25 @@ def step(step_num):
 def chat():
     return render_template('chat.html')
 
-@app.route('/submit_step1', methods=['POST'])
-def submit_step1():
-    data = request.get_json()
-    
-    # Store data in session
-    session['step1'] = data
-    
-    # Also save to file for AI model integration
-    save_response_to_file('step1', data)
-    
-    return jsonify({'success': True, 'next_step': '/step/2'})
+@app.route('/submit_form', methods=['POST'])
+def submit_form():
+    # For now, just print form data and return a success message
+    form_data = request.form.to_dict()
 
-@app.route('/submit_step2', methods=['POST'])
-def submit_step2():
-    data = request.get_json()
-    
-    session['step2'] = data
-    save_response_to_file('step2', data)
-    
-    return jsonify({'success': True, 'next_step': '/step/3'})
+    initialize_artifact("memory", form_data)
+    initialize_artifact("pref", form_data)
+    initialize_artifact("schedule", form_data)
+    initialize_artifact("health", form_data)
+    initialize_artifact("resv", form_data)
 
-@app.route('/submit_step3', methods=['POST'])
-def submit_step3():
-    data = request.get_json()
+    print(f"User context initialized: {form_data}")
+    print("Initialized artifacts for BRACES agents!")
+    print(form_data)
     
-    session['step3'] = data
-    save_response_to_file('step3', data)
-    
-    return jsonify({'success': True, 'next_step': '/step/4'})
+    # TODO: Save to database or file, process, etc.
 
-@app.route('/submit_step4', methods=['POST'])
-def submit_step4():
-    data = request.get_json()
-    
-    session['step4'] = data
-    save_response_to_file('step4', data)
-    
-    return jsonify({'success': True, 'next_step': '/step/5'})
+    return "Form submitted successfully!"
 
-@app.route('/submit_step5', methods=['POST'])
-def submit_step5():
-    data = request.get_json()
-    
-    session['step5'] = data
-    save_response_to_file('step5', data)
-    
-    # Compile all responses for AI model
-    compile_all_responses()
-    
-    return jsonify({'success': True, 'next_step': '/chat'})
 
 
 @app.route('/send_message', methods=['POST'])
@@ -167,6 +138,10 @@ def log_chat_message(user_message, ai_response):
 def generate_session_id():
     """Generate a unique session ID"""
     return f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
