@@ -3,89 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Chat Session - Study Progress</title>
   <!-- Include your existing stylesheet -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}"> -->
   <!-- Include the chat-specific stylesheet -->
   <link rel="stylesheet" href="{{ url_for('static', filename='chat-styles.css') }}">
+  
 </head>
-<body class="chat-page">
+<body>
   <div class="chat-container">
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <button class="menu-icon">☰</button>
+        <button class="menu-icon" onclick="toggleSidebar()">☰</button>
         <div class="search-box">
-          <input type="text" placeholder="Search">
+          <input type="text" placeholder="Search conversations..." id="searchInput" oninput="searchConversations()">
           <span class="search-icon">🔍</span>
         </div>
       </div>
       
-      <div class="conversations">
-        <div class="conversation-item active">
-          <div class="avatar" style="background: linear-gradient(45deg, #60a5fa, #a78bfa);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">How're you feeling today?</div>
-          </div>
-          <div class="conversation-time">19:48</div>
-          <div class="status-indicator status-online"></div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #f97316, #eab308);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">Awesome! Let's stay intentional. I'll ...</div>
-          </div>
-          <div class="conversation-time">now</div>
-          <div class="status-indicator status-online"></div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #ec4899, #f43f5e);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">My exams are in two days time, I'm worried...</div>
-          </div>
-          <div class="conversation-time">6:02</div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #22c55e, #84cc16);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">Rise and shine, it's Monday!</div>
-          </div>
-          <div class="conversation-time">4:42</div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #8b5cf6, #a855f7);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">All done mate 😊</div>
-          </div>
-          <div class="conversation-time">Sun</div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #06b6d4, #0891b2);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">It's ready.</div>
-          </div>
-          <div class="conversation-time">Sun</div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #64748b, #475569);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">I'm feeling Calm and quiet</div>
-          </div>
-          <div class="conversation-time">Sat</div>
-        </div>
-        
-        <div class="conversation-item">
-          <div class="avatar" style="background: linear-gradient(45deg, #ef4444, #dc2626);"></div>
-          <div class="conversation-content">
-            <div class="conversation-preview">What helped or hurt your focus this week?</div>
-          </div>
-          <div class="conversation-time">Fri</div>
+      <div class="conversations" id="conversationsList">
+        <div class="empty-conversations" id="emptyState">
+          <h3>No conversations yet</h3>
+          <p>Start chatting to see your conversations here</p>
         </div>
       </div>
     </div>
@@ -96,16 +37,22 @@
         <div class="today-label">Today</div>
         <div class="study-progress">Study Progress</div>
         <div class="user-avatars">
-          <div class="user-avatar" style="background: #666;"></div>
-          <div class="user-avatar" style="background: #888;"></div>
+          <div class="user-avatar" style="background: #007aff;"></div>
+          <div class="user-avatar" style="background: #ff3b30;"></div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">65%</span>
         </div>
       </div>
       
-      <div class="chat-messages">
+      <div class="chat-messages" id="chatMessages">
         <div class="welcome-message">
           <div class="ai-welcome-bubble">
             <div class="ai-avatar">
-              <div class="ai-icon">🤖</div>
+              <div class="ai-icon">Z</div>
             </div>
             <div class="welcome-content">
               <div class="typing-indicator">
@@ -115,7 +62,7 @@
               </div>
               <div class="welcome-text">
                 <h2>Hey there! 👋</h2>
-                <p>I'm your personal academic assistant. I've analyzed your responses and I'm ready to help you crush your goals!</p>
+                <p>I'm Zeta, your personal academic assistant. I've analyzed your responses and I'm ready to help you crush your goals!</p>
                 <div class="welcome-features">
                   <span class="feature-tag">📚 Smart Study Plans</span>
                   <span class="feature-tag">⏰ Time Management</span>
@@ -130,7 +77,10 @@
       
       <div class="chat-input">
         <div class="input-container">
-          <input type="text" placeholder="Message" id="messageInput">
+          <input type="text" placeholder="Type your message..." id="messageInput">
+          <button class="voice-button" id="voiceButton" onclick="toggleVoiceRecording()">
+            🎤
+          </button>
           <button class="send-button" onclick="sendMessage()">
             <span>➤</span>
           </button>
@@ -138,83 +88,7 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function startDiscussion(topic) {
-      const input = document.getElementById('messageInput');
-      const messages = {
-        'schedule': "I'd like to review my schedule and time management",
-        'goals': "Help me set and track my academic goals",
-        'focus': "I need strategies to improve my focus and concentration",
-        'progress': "Let's review my progress and achievements"
-      };
-      input.value = messages[topic];
-      input.focus();
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('messageInput');
-      const message = input.value.trim();
-      if (message) {
-        addMessageToChat(message, 'user');
-        fetch('/send_message', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        })
-        .then(response => response.json())
-        .then(data => {
-          addMessageToChat(data.response, 'ai');
-        });
-        input.value = '';
-      }
-    }
-
-    function addMessageToChat(message, sender) {
-      const chatMessages = document.querySelector('.chat-messages');
-      const welcomeMessage = document.querySelector('.welcome-message');
-      if (welcomeMessage) {
-        welcomeMessage.style.display = 'none';
-      }
-      const messageDiv = document.createElement('div');
-      messageDiv.className = sender === 'ai' ? 'ai-message' : 'user-message';
-      messageDiv.textContent = message;
-      chatMessages.appendChild(messageDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // Send initial message on page load
-    window.addEventListener('DOMContentLoaded', function() {
-      sendInitialMessage();
-    });
-
-    function sendInitialMessage() {
-      const initialMessage = "start";
-      fetch('/send_message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: initialMessage })
-      })
-      .then(response => response.json())
-      .then(data => {
-        addMessageToChat(data.response, 'ai');
-      });
-    }
-
-    // Enter key to send message
-    document.getElementById('messageInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-
-    // Conversation item click handler
-    document.querySelectorAll('.conversation-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-  </script>
+  
+  <script src="/static/chat.js"></script>
 </body>
 </html>
