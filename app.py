@@ -44,7 +44,8 @@ def chat():
 def submit_form():
     # For now, just print form data and return a success message
     form_data = request.form.to_dict()
-
+    # print(form_data)
+    {'preferredName': 'David', 'level_of_study': '100L', 'name_of_institution': 'University of Lagos', 'field_of_study': 'Computer Engineering', 'Top_academic_goal_this_semester': 'Earn a 5.0 cgpa\r\n', 'No_of_study_hours': '7', 'No_of_sleep_hours': '9', 'distractions_prone': 'Yes', 'consistent_daily_study_routine': 'Yes', 'Productive_hours_of_the day': 'night', 'preferred_study_environment': 'lib', 'class_materials_review': 'often', 'average_sleep_hours': '8', 'study_breaks': 'often', 'self-care-practice': 'no', 'proper_food': 'yes'}
     initialize_artifact("memory", form_data)
     initialize_artifact("pref", form_data)
     initialize_artifact("schedule", form_data)
@@ -53,7 +54,6 @@ def submit_form():
 
     print(f"User context initialized: {form_data}")
     print("Initialized artifacts for BRACES agents!")
-    print(form_data)
     
     # TODO: Save to database or file, process, etc.
 
@@ -88,4 +88,4 @@ def generate_session_id():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

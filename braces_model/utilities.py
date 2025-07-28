@@ -21,7 +21,10 @@ def run_agent(model: str, artifact: str, message: str, temperature: float = 0.6)
         }
     )
     data = response.json()
-    return data['choices'][0]['message']['content']
+
+# user_context = {
+#     "name": "John
+#     return data['choices'][0]['message']['content']
 
 
 def initialize_artifact(role: str, user_context: dict) -> str:
