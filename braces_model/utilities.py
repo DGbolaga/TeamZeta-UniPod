@@ -8,23 +8,34 @@ load_dotenv()
 API_KEY = os.getenv("OPEN_ROUTER_KEY")
 
 def run_agent(model: str, artifact: str, message: str, temperature: float = 0.6) -> str:
-    response = requests.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {API_KEY}",
-            "Content-Type": "application/json"
-        },
-        json={
-            "model": model,
-            "temperature": temperature,
-            "messages": [{"role": "system", "content": artifact}, {"role": "user", "content": message}] #switch between system and user to see which is better
-        }
-    )
-    data = response.json()
-
-# user_context = {
-#     "name": "John
-#     return data['choices'][0]['message']['content']
+    # Check if API key is available
+    if not API_KEY:
+        return f"Demo response: I understand you're asking '{message[:50]}...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file."
+    
+    try:
+        response = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {API_KEY}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": model,
+                "temperature": temperature,
+                "messages": [{"role": "system", "content": artifact}, {"role": "user", "content": message}] #switch between system and user to see which is better
+            }
+        )
+        data = response.json()
+        
+        # Check if the response is successful
+        if response.status_code == 200 and 'choices' in data and len(data['choices']) > 0:
+            return data['choices'][0]['message']['content']
+        else:
+            print(f"API Error: {response.status_code}, {data}")
+            return "I'm sorry, I'm having trouble connecting to my AI service right now. Please try again later."
+    except Exception as e:
+        print(f"Connection Error: {e}")
+        return f"Demo response: I understand you're asking about '{message[:50]}...' - this is a demo response since the AI service is not available right now."
 
 
 def initialize_artifact(role: str, user_context: dict) -> str:

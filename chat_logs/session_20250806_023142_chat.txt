@@ -1,0 +1,19 @@
+[2025-08-06T02:33:06.671872] USER: jjwkw
+[2025-08-06T02:33:06.671872] AI: None
+
+[2025-08-06T04:13:10.830233] USER: hallo
+[2025-08-06T04:13:10.830233] AI: Demo response: I understand you're asking 'User question: hallo
+Memory agent: Demo response: ...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file.
+
+[2025-08-06T04:13:19.405895] USER: kj
+[2025-08-06T04:13:19.405895] AI: Demo response: I understand you're asking 'User question: kj
+Memory agent: Demo response: I u...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file.
+
+[2025-08-06T04:16:41.678897] USER: j
+[2025-08-06T04:16:41.678897] AI: Demo response: I understand you're asking 'User question: j
+Memory agent: Demo response: I un...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file.
+
+[2025-08-06T04:17:55.409323] USER: j
+[2025-08-06T04:17:55.409323] AI: Demo response: I understand you're asking 'User question: j
+Memory agent: Demo response: I un...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file.
+

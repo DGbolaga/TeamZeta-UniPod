@@ -1,0 +1,4 @@
+[2025-08-06T04:16:14.096753] USER: test
+[2025-08-06T04:16:14.096753] AI: Demo response: I understand you're asking 'User question: test
+Memory agent: Demo response: I...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file.
+

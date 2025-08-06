@@ -1,0 +1,4 @@
+[2025-08-06T04:09:48.182341] USER: Hello, how can you help me study?
+[2025-08-06T04:09:48.182341] AI: Demo response: I understand you're asking 'User question: Hello, how can you help me study?
+M...' but I need an API key to provide real AI responses. Please configure your OpenRouter API key in a .env file.
+

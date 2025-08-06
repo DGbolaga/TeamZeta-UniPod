@@ -213,40 +213,141 @@ function sendMessage() {
   // Show typing indicator
   showTypingIndicator();
   
-  // Simulate AI response after delay
-  setTimeout(() => {
+  // Get real AI response from backend
+  fetch('/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message: message })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
     hideTypingIndicator();
-    const aiResponse = generateAIResponse(message);
     
-    if (conversation) {
-      conversation.messages.push({ text: aiResponse, sender: 'ai' });
+    // Check if we got a valid response
+    if (!data || !data.response) {
+      throw new Error('Invalid response from server');
     }
     
-    addMessageToChat(aiResponse, 'ai', conversation);
+    if (conversation) {
+      conversation.messages.push({ text: data.response, sender: 'ai' });
+    }
+    
+    addMessageToChat(data.response, 'ai', conversation);
     renderConversations();
-  }, 1500);
+    
+    // Show calendar sync notification if tasks were synced
+    if (data.synced_tasks && data.synced_tasks > 0) {
+      showSyncNotification(data.synced_tasks);
+    }
+  })
+  .catch(error => {
+    hideTypingIndicator();
+    console.error('Error details:', error);
+    const errorResponse = 'Sorry, there was an error processing your request. Please try again.';
+    
+    if (conversation) {
+      conversation.messages.push({ text: errorResponse, sender: 'ai' });
+    }
+    
+    addMessageToChat(errorResponse, 'ai', conversation);
+    renderConversations();
+  });
 }
 
-function generateAIResponse(userMessage) {
-  const responses = [
-    "That's a great question! Let me help you with that.",
-    "I understand what you're looking for. Here's my suggestion:",
-    "Based on what you've told me, I think the best approach would be:",
-    "Let's work through this step by step.",
-    "That's an interesting perspective. Have you considered:",
-    "I can definitely help you with your study goals!",
-    "As Zeta, I'm here to support your learning journey.",
-    "Great question! Let me break this down for you.",
-    "I see what you're getting at. Here's how we can tackle this:",
-    "Perfect! Let's dive into that topic together.",
-    "That's exactly the kind of thinking that leads to success!",
-    "I love your curiosity! Here's what I'd recommend:",
-    "You're on the right track. Let me add some insights:",
-    "Excellent point! Here's how we can build on that:",
-    "I'm excited to help you explore this further!"
-  ];
+function showSyncNotification(taskCount) {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = 'sync-notification';
+  notification.innerHTML = `
+    <div class="sync-icon">📅</div>
+    <div class="sync-text">
+      <strong>${taskCount} task(s) synced to calendar!</strong>
+      <br><small>Check your calendar to see AI-generated tasks</small>
+    </div>
+    <button class="sync-close" onclick="this.parentElement.remove()">×</button>
+  `;
   
-  return responses[Math.floor(Math.random() * responses.length)];
+  // Add to page
+  document.body.appendChild(notification);
+  
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.remove();
+    }
+  }, 5000);
+  
+  // Add styles if not already present
+  if (!document.querySelector('#sync-notification-styles')) {
+    const styles = document.createElement('style');
+    styles.id = 'sync-notification-styles';
+    styles.textContent = `
+      .sync-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #007aff, #af52de);
+        color: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 122, 255, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        z-index: 1000;
+        animation: slideInNotification 0.3s ease-out;
+        max-width: 300px;
+      }
+      
+      @keyframes slideInNotification {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      .sync-icon {
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+      
+      .sync-text {
+        flex: 1;
+        line-height: 1.4;
+      }
+      
+      .sync-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      
+      .sync-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+    `;
+    document.head.appendChild(styles);
+  }
 }
 
 function addMessageToChat(message, sender, conversation = null) {

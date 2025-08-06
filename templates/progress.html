@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Academic Progress - TeamZeta UniPod</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='chat-styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='calendar-styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='progress-styles.css') }}">
+</head>
+<body>
+  <div class="progress-container">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button class="menu-icon" onclick="toggleSidebar()">☰</button>
+        <div class="nav-title">Progress Tracker</div>
+      </div>
+      
+      <div class="calendar-nav">
+        <a href="/chat" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span class="nav-text">Chat</span>
+        </a>
+        <a href="/calendar" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span class="nav-text">Calendar</span>
+        </a>
+        <a href="/progress" class="nav-link active">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Progress</span>
+        </a>
+        <a href="#" class="nav-link">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text">Settings</span>
+        </a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="quick-stats">
+        <h3>Quick Stats</h3>
+        <div class="stat-item">
+          <span class="stat-icon">🔥</span>
+          <div class="stat-info">
+            <span class="stat-value" id="currentStreak">0</span>
+            <span class="stat-label">Day Streak</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🎯</span>
+          <div class="stat-info">
+            <span class="stat-value" id="totalActivities">0</span>
+            <span class="stat-label">Activities</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🏆</span>
+          <div class="stat-info">
+            <span class="stat-value" id="totalMilestones">0</span>
+            <span class="stat-label">Milestones</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Progress Area -->
+    <div class="main-progress">
+      <!-- Progress Header -->
+      <div class="progress-header" style="background: #1e293b !important; display: flex !important; min-height: 100px !important;">
+        <div class="header-info">
+          <h1 style="color: white !important; font-size: 24px !important;">Your Academic Journey</h1>
+          <p style="color: #94a3b8 !important;">Track your consistency, celebrate your growth, and build lasting study habits</p>
+        </div>
+        <div class="streak-display">
+          <div class="current-streak">
+            <span class="streak-number" id="mainStreakNumber" style="color: white !important;">7</span>
+            <span class="streak-label" style="color: #94a3b8 !important;">Current Streak</span>
+            <span class="streak-fire">🔥</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Heatmap (GitHub-style) -->
+      <div class="activity-section" style="background: #1e293b !important; display: block !important; min-height: 200px !important; padding: 24px !important; border: 1px solid #3b82f6 !important; border-radius: 16px !important;">
+        <div class="section-header" style="display: flex !important; justify-content: space-between !important; align-items: center !important;">
+          <h2 style="color: white !important; font-size: 24px !important;">Activity Overview</h2>
+          <div class="activity-legend" style="display: flex !important; align-items: center !important; gap: 8px !important;">
+            <span style="color: #94a3b8 !important;">Less</span>
+            <div class="legend-colors" style="display: flex !important; gap: 2px !important;">
+              <div class="legend-square intensity-0" style="width: 12px; height: 12px; background: #1e293b; border-radius: 2px;"></div>
+              <div class="legend-square intensity-1" style="width: 12px; height: 12px; background: rgba(16, 185, 129, 0.3); border-radius: 2px;"></div>
+              <div class="legend-square intensity-2" style="width: 12px; height: 12px; background: rgba(16, 185, 129, 0.5); border-radius: 2px;"></div>
+              <div class="legend-square intensity-3" style="width: 12px; height: 12px; background: rgba(16, 185, 129, 0.7); border-radius: 2px;"></div>
+              <div class="legend-square intensity-4" style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></div>
+            </div>
+            <span style="color: #94a3b8 !important;">More</span>
+          </div>
+        </div>
+        
+        <div class="heatmap-container" style="display: block !important; margin-top: 20px !important;">
+          <div class="heatmap-months" id="heatmapMonths" style="display: flex !important; justify-content: space-between !important; color: #94a3b8 !important; font-size: 12px !important; margin-bottom: 8px !important;">
+            <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+          </div>
+          <div class="heatmap-grid" id="heatmapGrid" style="display: grid !important; grid-template-columns: repeat(53, 1fr) !important; gap: 2px !important; min-height: 100px !important; background: rgba(255,255,255,0.05) !important; padding: 10px !important; border-radius: 8px !important;">
+            <!-- Demo heatmap squares -->
+            <div style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></div>
+            <div style="width: 12px; height: 12px; background: rgba(16, 185, 129, 0.7); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 12px; background: rgba(16, 185, 129, 0.5); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 12px; background: #1e293b; border-radius: 2px;"></div>
+            <div style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Streaks -->
+      <div class="streaks-section">
+        <h2>Learning Streaks</h2>
+        <div class="streak-cards" id="streakCards">
+          <!-- Dynamic streak cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Weekly Progress -->
+      <div class="weekly-section">
+        <h2>This Week's Progress</h2>
+        <div class="weekly-chart" id="weeklyChart">
+          <div class="weekly-bars" id="weeklyBars"></div>
+          <div class="weekly-labels" id="weeklyLabels"></div>
+        </div>
+      </div>
+
+      <!-- Milestones -->
+      <div class="milestones-section">
+        <h2>Achievement Milestones</h2>
+        <div class="milestones-grid" id="milestonesGrid">
+          <div class="milestone-card achieved">
+            <span class="milestone-icon achieved-icon">🎯</span>
+            <div class="milestone-info">
+              <h4>First Steps</h4>
+              <div class="milestone-description">Completed your first activity!</div>
+              <div class="achievement-badge">✓ Unlocked</div>
+            </div>
+          </div>
+          
+          <div class="milestone-card achieved">
+            <span class="milestone-icon achieved-icon">📚</span>
+            <div class="milestone-info">
+              <h4>5 Study Sessions</h4>
+              <div class="milestone-description">Dedication to learning pays off!</div>
+              <div class="achievement-badge">✓ Unlocked</div>
+            </div>
+          </div>
+          
+          <div class="milestone-card achieved">
+            <span class="milestone-icon achieved-icon">🤖</span>
+            <div class="milestone-info">
+              <h4>AI Collaborator</h4>
+              <div class="milestone-description">Had 10 meaningful AI interactions!</div>
+              <div class="achievement-badge">✓ Unlocked</div>
+            </div>
+          </div>
+          
+          <div class="milestone-card locked">
+            <span class="milestone-icon locked-icon">🔥</span>
+            <div class="milestone-info">
+              <h4>7-Day Streak</h4>
+              <div class="milestone-description">One week of consistent progress!</div>
+              <div class="locked-badge">🔒 Locked</div>
+            </div>
+          </div>
+          
+          <div class="milestone-card locked">
+            <span class="milestone-icon locked-icon">⚖️</span>
+            <div class="milestone-info">
+              <h4>Balanced Learner</h4>
+              <div class="milestone-description">Maintained healthy study habits!</div>
+              <div class="locked-badge">🔒 Locked</div>
+            </div>
+          </div>
+          
+          <div class="milestone-card locked">
+            <span class="milestone-icon locked-icon">💯</span>
+            <div class="milestone-info">
+              <h4>100 Total Activities</h4>
+              <div class="milestone-description">Century club member!</div>
+              <div class="locked-badge">🔒 Locked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wellness Habits -->
+      <div class="wellness-section">
+        <h2>Wellness & Balance</h2>
+        <div class="wellness-cards" id="wellnessCards">
+          <div class="wellness-card">
+            <span class="wellness-icon">💤</span>
+            <div class="wellness-info">
+              <h3>Sleep Quality</h3>
+              <span class="wellness-status good">Good</span>
+              <div class="wellness-detail">7.5 hrs average</div>
+            </div>
+          </div>
+          
+          <div class="wellness-card">
+            <span class="wellness-icon">⚖️</span>
+            <div class="wellness-info">
+              <h3>Study-Life Balance</h3>
+              <span class="wellness-status excellent">Excellent</span>
+              <div class="wellness-detail">Balanced schedule</div>
+            </div>
+          </div>
+          
+          <div class="wellness-card">
+            <span class="wellness-icon">🧘</span>
+            <div class="wellness-info">
+              <h3>Stress Level</h3>
+              <span class="wellness-status good">Manageable</span>
+              <div class="wellness-detail">Regular breaks</div>
+            </div>
+          </div>
+          
+          <div class="wellness-card">
+            <span class="wellness-icon">🎯</span>
+            <div class="wellness-info">
+              <h3>Focus Time</h3>
+              <span class="wellness-status needs-work">Improving</span>
+              <div class="wellness-detail">45 min sessions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <p>Loading your progress...</p>
+  </div>
+
+  <script src="{{ url_for('static', filename='progress.js') }}"></script>
+</body>
+</html>
