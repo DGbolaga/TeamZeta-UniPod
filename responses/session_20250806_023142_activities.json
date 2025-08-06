@@ -1,0 +1,271 @@
+[
+  {
+    "id": "session_20250806_023142_1754445112.106953",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:51:52.106991",
+    "duration": 249,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:51:52.068Z"
+    }
+  }
+]"id": "session_20250806_023142_1754443915.143354",
+    "type": "progress_view",
+    "date": "2025-08-06T02:31:55.143373",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:31:55.014Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754443926.521294",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:32:06.521317",
+    "duration": 23,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:32:06.400Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754443926.528296",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:32:06.528313",
+    "duration": 11,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:32:06.401Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754443927.561135",
+    "type": "progress_view",
+    "date": "2025-08-06T02:32:07.561169",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:32:07.451Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754443963.43525",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:32:43.435265",
+    "duration": 35,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:32:43.352Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444015.851239",
+    "type": "progress_view",
+    "date": "2025-08-06T02:33:35.851262",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:33:35.819Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444026.418424",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:33:46.418445",
+    "duration": 10,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:33:46.288Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444026.783958",
+    "type": "progress_view",
+    "date": "2025-08-06T02:33:46.783995",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:33:46.672Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444097.161813",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:34:57.161832",
+    "duration": 70,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:34:57.120Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444098.67068",
+    "type": "progress_view",
+    "date": "2025-08-06T02:34:58.670733",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:34:58.124Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444114.346211",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:35:14.346232",
+    "duration": 16,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:35:14.263Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444114.926555",
+    "type": "progress_view",
+    "date": "2025-08-06T02:35:14.926575",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:35:14.776Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444138.472077",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:35:38.472098",
+    "duration": 23,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:35:38.435Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444138.726656",
+    "type": "progress_view",
+    "date": "2025-08-06T02:35:38.726672",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:35:38.710Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444169.770767",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:36:09.770790",
+    "duration": 30,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:36:09.669Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444170.027355",
+    "type": "progress_view",
+    "date": "2025-08-06T02:36:10.027372",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:36:09.990Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444174.814349",
+    "type": "progress_view",
+    "date": "2025-08-06T02:36:14.814368",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:36:14.749Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444584.040386",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:43:04.040436",
+    "duration": 409,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:43:04.011Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444584.625341",
+    "type": "progress_view",
+    "date": "2025-08-06T02:43:04.625362",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:43:04.443Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444587.003646",
+    "type": "progress_view",
+    "date": "2025-08-06T02:43:07.003665",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:43:06.982Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444651.30416",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:44:11.304181",
+    "duration": 64,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:44:11.263Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444651.612132",
+    "type": "progress_view",
+    "date": "2025-08-06T02:44:11.612153",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:44:11.576Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444759.774745",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:45:59.774807",
+    "duration": 108,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:45:59.743Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444760.100608",
+    "type": "progress_view",
+    "date": "2025-08-06T02:46:00.100623",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:46:00.006Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754444862.363305",
+    "type": "progress_view",
+    "date": "2025-08-06T02:47:42.363335",
+    "duration": 0,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:47:42.308Z"
+    }
+  },
+  {
+    "id": "session_20250806_023142_1754445112.105871",
+    "type": "progress_engagement",
+    "date": "2025-08-06T02:51:52.105888",
+    "duration": 352,
+    "metadata": {
+      "page": "progress",
+      "timestamp": "2025-08-06T01:51:52.067Z"
+    }
+  }
+]

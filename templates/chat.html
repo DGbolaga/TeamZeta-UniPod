@@ -9,6 +9,8 @@
   <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}"> -->
   <!-- Include the chat-specific stylesheet -->
   <link rel="stylesheet" href="{{ url_for('static', filename='chat-styles.css') }}">
+  <!-- Include calendar styles for navigation -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='calendar-styles.css') }}">
   
 </head>
 <body>
@@ -21,6 +23,21 @@
           <input type="text" placeholder="Search conversations..." id="searchInput" oninput="searchConversations()">
           <span class="search-icon">🔍</span>
         </div>
+      </div>
+      
+      <div class="calendar-nav">
+        <a href="/chat" class="nav-link active">
+          <span class="nav-icon">💬</span>
+          <span class="nav-text">Chat</span>
+        </a>
+        <a href="/calendar" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span class="nav-text">Calendar</span>
+        </a>
+        <a href="/progress" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Progress</span>
+        </a>
       </div>
       
       <div class="conversations" id="conversationsList">

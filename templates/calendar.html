@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Calendar - TeamZeta UniPod</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='chat-styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='calendar-styles.css') }}">
+</head>
+<body>
+  <div class="calendar-container">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button class="menu-icon" onclick="toggleSidebar()">☰</button>
+        <div class="nav-title">Academic Planner</div>
+      </div>
+      
+      <div class="calendar-nav">
+        <a href="/chat" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span class="nav-text">Chat</span>
+        </a>
+        <a href="/calendar" class="nav-link active">
+          <span class="nav-icon">📅</span>
+          <span class="nav-text">Calendar</span>
+        </a>
+        <a href="/progress" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Progress</span>
+        </a>
+        <a href="#" class="nav-link">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text">Settings</span>
+        </a>
+      </div>
+
+      <!-- Quick Add Section -->
+      <div class="quick-add">
+        <h3>Quick Add</h3>
+        <button class="quick-btn study-session" onclick="quickAdd('study')">
+          📚 Study Session
+        </button>
+        <button class="quick-btn assignment" onclick="quickAdd('assignment')">
+          📝 Assignment
+        </button>
+        <button class="quick-btn exam" onclick="quickAdd('exam')">
+          🎯 Exam
+        </button>
+        <button class="quick-btn reminder" onclick="quickAdd('reminder')">
+          ⏰ Reminder
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Calendar Area -->
+    <div class="main-calendar">
+      <div class="calendar-header">
+        <div class="calendar-controls">
+          <button class="control-btn" onclick="previousMonth()">‹</button>
+          <h2 id="currentMonth">January 2025</h2>
+          <button class="control-btn" onclick="nextMonth()">›</button>
+        </div>
+        
+        <div class="view-controls">
+          <button class="view-btn active" onclick="setView('month')">Month</button>
+          <button class="view-btn" onclick="setView('week')">Week</button>
+          <button class="view-btn" onclick="setView('day')">Day</button>
+        </div>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div class="calendar-grid" id="calendar-grid">
+        <!-- Days of week header -->
+        <div class="calendar-header-row">
+          <div class="day-header">Sun</div>
+          <div class="day-header">Mon</div>
+          <div class="day-header">Tue</div>
+          <div class="day-header">Wed</div>
+          <div class="day-header">Thu</div>
+          <div class="day-header">Fri</div>
+          <div class="day-header">Sat</div>
+        </div>
+        
+        <!-- Calendar days will be populated by JavaScript -->
+        <div id="calendar-days"></div>
+      </div>
+
+      <!-- Today's Schedule Panel -->
+      <div class="today-panel">
+        <h3>Today's Schedule</h3>
+        <div id="today-events">
+          <div class="event-item study">
+            <span class="event-time">9:00 AM</span>
+            <span class="event-title">Mathematics Study Session</span>
+            <span class="event-duration">2 hours</span>
+          </div>
+          <div class="event-item assignment">
+            <span class="event-time">2:00 PM</span>
+            <span class="event-title">Physics Assignment Due</span>
+            <span class="event-priority">High Priority</span>
+          </div>
+          <div class="event-item break">
+            <span class="event-time">4:00 PM</span>
+            <span class="event-title">Study Break</span>
+            <span class="event-duration">30 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Modal -->
+  <div id="eventModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Event</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="eventForm">
+          <div class="form-group">
+            <label for="eventTitle">Title</label>
+            <input type="text" id="eventTitle" name="title" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="eventType">Type</label>
+            <select id="eventType" name="type">
+              <option value="study">Study Session</option>
+              <option value="assignment">Assignment</option>
+              <option value="exam">Exam</option>
+              <option value="reminder">Reminder</option>
+              <option value="class">Class</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventDate">Date</label>
+              <input type="date" id="eventDate" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="eventTime">Time</label>
+              <input type="time" id="eventTime" name="time" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="eventDuration">Duration (minutes)</label>
+            <input type="number" id="eventDuration" name="duration" min="15" step="15" value="60">
+          </div>
+          
+          <div class="form-group">
+            <label for="eventDescription">Description</label>
+            <textarea id="eventDescription" name="description" rows="3"></textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" onclick="closeModal()">Cancel</button>
+            <button type="submit">Save Event</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='calendar.js') }}"></script>
+</body>
+</html> 
